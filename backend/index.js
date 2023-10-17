@@ -7,14 +7,11 @@ import cors from "cors";
 
 const app = express();
 
-app.use("/books", booksRoute);
-
-// middleware for parsing request body
-app.use(express.json());
-
 // middleware for handling CORS policy
 // option 1 : allow all origin with default of CORS(*)
+
 app.use(cors());
+
 // option 2 : Allow custom origins
 // app.use(
 //   cors({
@@ -23,6 +20,12 @@ app.use(cors());
 //     allowedHeaders: ["Content-Type"],
 //   })
 // );
+
+app.use("/books", booksRoute);
+
+// middleware for parsing request body
+app.use(express.json());
+
 
 app.get("/", (request, response) => {
   console.log(request);
